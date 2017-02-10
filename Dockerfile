@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-MAINTAINER
+
 ENV DEPENDENCIES git-core gettext build-essential autoconf libtool libssl-dev libpcre3-dev asciidoc xmlto zlib1g-dev libev-dev libudns-dev libsodium-dev
 ENV BASEDIR /tmp/shadowsocks-libev
 ENV SERVER_PORT 2020
@@ -23,8 +23,7 @@ RUN rm -rf $BASEDIR/shadowsocks-libev\
  && apt-get --purge autoremove -y $DEPENDENCIES
 
 # Port in the config file won't take affect. Instead we'll use 8388.
-EXPOSE $SERVER_PORT/tcp $SERVER_PORT/udp
-
+EXPOSE $SERVER_PORT
 # Override the host and port in the config file.
 ADD entrypoint /
 ENTRYPOINT ["/entrypoint"]
